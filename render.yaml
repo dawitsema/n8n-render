@@ -2,10 +2,14 @@ services:
   - type: web
     name: n8n
     env: docker
-    repo: https://github.com/your-username/your-n8n-fork.git
-    branch: master
     dockerCommand: n8n
+    image: docker.io/n8nio/n8n:latest
+    branch: master
+    region: oregon          # Choose a free region close to you
+    plan: free              # Use the free instance type
     envVars:
+      - key: PORT
+        value: "5678"
       - key: WEBHOOK_URL
         value: https://your-n8n-app.onrender.com/
       - key: N8N_ENCRYPTION_KEY
@@ -13,8 +17,8 @@ services:
     disk:
       name: n8n-data
       mountPath: /home/node/.n8n
-      sizeGB: 5
+      sizeGB: 1             # Minimum disk size for persistence
 
 databases:
   - name: n8n-db
-    plan: basic-1gb
+    plan: free               # Free Postgres plan (note it expires after 30 days)
