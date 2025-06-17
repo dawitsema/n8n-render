@@ -3,9 +3,9 @@ services:
     name: n8n
     env: docker
     dockerCommand: n8n
-    image: docker.io/n8nio/n8n:latest
-    region: oregon          # Choose a free region close to you
-    plan: free              # Use the free instance type
+    dockerImage: docker.io/n8nio/n8n:latest
+    region: oregon
+    plan: free
     envVars:
       - key: PORT
         value: "5678"
@@ -16,8 +16,8 @@ services:
     disk:
       name: n8n-data
       mountPath: /home/node/.n8n
-      sizeGB: 1             # Minimum disk size for persistence
+      sizeGB: 1
 
 databases:
   - name: n8n-db
-    plan: free               # Free Postgres plan (note it expires after 30 days)
+    plan: free
