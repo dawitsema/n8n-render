@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: n8n
+    env: docker
+    repo: https://github.com/your-username/your-n8n-fork.git
+    branch: master
+    dockerCommand: n8n
+    envVars:
+      - key: WEBHOOK_URL
+        value: https://your-n8n-app.onrender.com/
+      - key: N8N_ENCRYPTION_KEY
+        generateValue: true
+    disk:
+      name: n8n-data
+      mountPath: /home/node/.n8n
+      sizeGB: 5
+
+databases:
+  - name: n8n-db
+    plan: basic-1gb
